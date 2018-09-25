@@ -2,6 +2,6 @@
 
 """Top-level package for mbl_downloader."""
 
-__author__ = """Audrey Roy Greenfeld"""
-__email__ = 'jim zhou'
+__author__ = """jim zhou"""
+__email__ = 'jimtje@gmail.com'
 __version__ = '0.1.0'
