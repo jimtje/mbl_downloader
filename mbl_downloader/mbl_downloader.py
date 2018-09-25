@@ -45,7 +45,6 @@ class MBLDownloader(object):
         else:
             return True
 
-
     async def _authorize(self):
         """
 
@@ -83,6 +82,13 @@ class MBLDownloader(object):
                 _referer = _soup.find('input', attrs={'name': 'referer'})['value']
                 _filename = _soup.find('input', attrs={'name': 'filename'})['value']
                 _data2 = {'link': _link, 'path': _path, 'host': _host, 'filename': _filename, 'referer': _referer}
+                _res = await self.api_session.post(_url, data=_data2, cookies=_cookies)
+                _soup2 = bs4.BeautifulSoup(_res.text)
+                _file_name = _soup2.find('a').contents[0]
+                _dl = _soup2.find('a')['download']
+                return await self.api_session.get(_dl, cookies=_cookies, stream=True)
+            except:
+                raise
 
 
 
